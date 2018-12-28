@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>REGISTRO</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/estilo.css">
+        <script src="js/registro.js" type="text/javascript"></script>
+    </head>
+    <body>
+         <div>
+            <nav id = "nav">
+             <a href="index.html">Inicio</a>
+            </nav>
+        </div>
+        <section id="three" class="wrapper align-center">
+            <div class="inner">
+                <div class="flex flex-2">
+                    <article>
+                        <header>
+                            <h3>Registro</h3>
+                        </header>
+                        <form name="frmRegistro" id="frmRegistro" method="get" action ="registro.java">
+                            <p>Nombre:<input type="text" name="name" id="nombre" pattern="[a-zA-z]{3,15}$" placeholder="Al menos tres letras" />
+                            <p>DNI:<input type="text" name="DNI" id="DNI" pattern="[0-9]{8}" placeholder="Ocho números"/>
+                            <p>Telefono:<input type="text" name="tfn" id="telefono" pattern="[67][0-9]{8}" placeholder="Ocho números, empezando en 6 o 7"/>    
+                            <p>Email:<input type="email" name="email" id="email" pattern="[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required="" placeholder="a@a.com"/>
+                            <p>Contraseña:<input type="password" name="txtPassword" id="password" value="" required=""  maxlength="15" placeholder="Máximo de 15 caracteres"/>
+<!--                            <section id="deposito">
+                                <p>Arrastre y suelte su foto aquí</p>
+                            </section>
+                            <section id="cajaimagenes">
+                                <img id="imagen" src="img/">
+                            </section>-->
+                            <p><button type="submit" class="button" id="registro">Registro</button></p>
+                        </form>
+
+                    </article>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>
