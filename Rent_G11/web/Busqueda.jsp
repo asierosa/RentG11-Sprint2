@@ -26,6 +26,7 @@
                 <a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
             </div>
         </header>
+        
 
         <!-- Centro -->
         <section id="banner">

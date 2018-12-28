@@ -57,26 +57,14 @@ public class Registro extends HttpServlet {
         String DNI = (String) req.getParameter("DNI");
         String telefono = (String)req.getParameter("tfn");
         String contrasena =(String) req.getParameter("txtPasword");
+        String foto = (String) req.getParameter("");
         s.setAttribute("nombreCliente", nombre);
+        s.setAttribute("fotoCliente", foto);
         
-        boolean existe = false;
+       
         try {
-            set = con.createStatement();
-            rs = set.executeQuery("SELECT * FROM Jugadores");
-            while (rs.next()) {
-                cad = rs.getString("Nombre");
-                cad = cad.trim();
-                if (cad.compareTo(nombre.trim()) == 0) {
-                    existe = true;
-                }
-            }
-            rs.close();
-            set.close();
-        } catch (SQLException ex1) {
-            System.out.println("No lee de la tabla Jugadores. " + ex1);
-        }
-        try {
-            set.executeUpdate("INSERT INTO cliente VALUES ('"+email+"','"+nombre+"','"+DNI+"','"+telefono+"','"+contrasena+"')");
+            set= con.createStatement();
+            set.executeUpdate("INSERT INTO cliente VALUES ('"+email+"','"+nombre+"','"+DNI+"','"+telefono+"','"+contrasena+"','"+foto+"')");
 
             rs.close();
             set.close();
