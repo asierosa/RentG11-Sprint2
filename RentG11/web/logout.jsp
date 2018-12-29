@@ -18,7 +18,7 @@
         <!-- Cabecera -->
         <header id="header">
             <div class="inner">
-                <a href="index.html" class="logo"><strong>RentG</strong>, ¡alquiler de coches!</a> 
+                <a href="index.jsp" class="logo">Volver</a> 
                 <a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
             </div>
         </header>
@@ -33,7 +33,6 @@
         }
     %>
     <h1>Logout realizado.</h1>
-    <a href="index.jsp" class="logo">Volver al inicio</a>
 </div>
 </section>
 

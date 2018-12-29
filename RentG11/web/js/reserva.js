@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 
-/* global IDBKeyRange */
-
 function iniciar() {
     correo = localStorage.getItem('Correo');
     coche = document.getElementById("coches");

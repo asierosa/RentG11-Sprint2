@@ -29,65 +29,45 @@ public class Login extends HttpServlet {
         s.setAttribute("email", emailLog);
         String pass = (String) req.getParameter("txtPassLogin");
 
-        boolean existe = false;
-        try {
-            set = con.createStatement();
-            rs = set.executeQuery("SELECT * FROM cliente");
-            while (rs.next()) {
-                cad = rs.getString("Email");
-                cad = cad.trim();
-                if (cad.compareTo(emailLog.trim()) == 0) {
-                    existe = true;
-                }
-            }
-            rs.close();
-            set.close();
-        } catch (SQLException ex1) {
-            System.out.println("No lee de la tabla Cliente. " + ex1);
-        }
-        try {
-            set = con.createStatement();
-            if (existe) {
+        if ("RS1@rentG.com".equals(emailLog) || "RS2@rentG.com".equals(emailLog) || "RS3@rentG.com".equals(emailLog)) {
 
-                boolean contr = false;
-                try {
-                    set = con.createStatement();
-                    String select = "SELECT * FROM cliente where Email like " + emailLog;
-                    rs = set.executeQuery(select);
-                    while (rs.next()) {
-                        cad = rs.getString("Constraseña");
-                        cad = cad.trim();
-                        if (cad.compareTo(pass.trim()) == 0) {
-                            contr = true;
-                        }
-                    }
-                    rs.close();
-                    set.close();
-                } catch (SQLException ex1) {
-                    System.out.println("No lee de la tabla Cliente. " + ex1);
-                }
-                if (contr) {
-
-                    if (emailLog != "RS1@rentG.com" || emailLog != "RS2@rentG.com" || emailLog != "RS3@rentG.com") {
-                        req.getRequestDispatcher("indexCliente.jsp").forward(req, res);
-                    } else {
-                        req.getRequestDispatcher("indexRS.jsp").forward(req, res);
-                    }
-                }
+            try {
                 
-                else{
-                    System.out.println("La contraseña es incorrecta.");
+                boolean existe = false;
+                PreparedStatement ps = con.prepareStatement("select * from responsableoficina where Usuario=? and Contraseña=?");
+                ps.setString(1, emailLog);
+                ps.setString(2, pass);
+                ResultSet rs = ps.executeQuery();
+                existe = rs.next();
+                if (existe) {
+                    s.setAttribute("usuario", rs.getString("Usuario"));
+                    req.getRequestDispatcher("indexRS.jsp").forward(req, res);
                 }
 
-            } else {
-                System.out.println("No existe en la BD el email indicado.");
+                
+            } catch (SQLException ex1) {
+                System.out.println("Email o contraseña incorrectos" + ex1);
             }
-            rs.close();
-            set.close();
-        } catch (SQLException ex2) {
-            System.out.println(ex2);
-        }
+        } 
+        else {
+            try {
+               boolean existe = false;
+                PreparedStatement ps = con.prepareStatement("select * from cliente where Email=? and Contraseña=?");
+                ps.setString(1, emailLog);
+                ps.setString(2, pass);
+                ResultSet rs = ps.executeQuery();
+                existe = rs.next();
 
+                if (existe) {
+                    s.setAttribute("nombre", rs.getString("Nombre"));
+                    req.getRequestDispatcher("indexCliente.jsp").forward(req, res);
+                }
+                rs.close();
+                
+            } catch (SQLException ex1) {
+                System.out.println("Email o contraseña incorrectos" + ex1);
+            }
+        }
     }
 
     @Override

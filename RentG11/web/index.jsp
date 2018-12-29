@@ -19,7 +19,7 @@
         <!-- Cabecera -->
         <header id="header">
             <div class="inner">
-                <a href="index.html" class="logo"><strong>RentG</strong>, ¡alquiler de coches!</a>
+                <a href="index.jsp" class="logo"><strong>RentG</strong>, ¡alquiler de coches!</a>
                 <nav id="nav">
                     <a href="registro.html">Registro</a>
                     <a href="login.html">Login</a>
@@ -39,7 +39,7 @@
 
                     <div>
                         <span ></span>
-                        <form name="frmAlquiler" id="frmAlquiler" method="get" action="">
+                        <form name="frmAlquiler" id="frmAlquiler" method="get" action="login.html">
                             <p>Elige un coche </p>
                             <select name="lCoches" id="coches" size="6" required="">
                                 <%!

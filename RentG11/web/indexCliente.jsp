@@ -18,7 +18,7 @@
         <!-- Cabecera -->
         <header id="header">
             <div class="inner">
-                <a href="index.html" class="logo"><strong>RentG</strong>, ¡alquiler de coches!</a>
+                <a href="index.jsp" class="logo"><strong>RentG</strong>, ¡alquiler de coches!</a>
                 <nav id="nav">
                     <%!
                         private Connection con;
@@ -27,27 +27,25 @@
 
                         public void jspInit() {
                             con = BD.getConexion();
-                        };                                               
+                        };                                      
                     %>     
                     <%
-                                    try {
-                                        String foto = null;
-                                        String nombre = (String) session.getAttribute("nombre"); 
-                                        String select= "SELECT foto FROM cliente where Email like "+session.getAttribute("nombre");
-                                        set = con.createStatement();
-                                        rs = set.executeQuery(select);
-                                        rs.next();
-                                            foto = rs.getString("foto");
-                                %>
-                                <h1> Hola, <%= nombre%> </h1>
-                                <h1> <%=foto%> </h1>
-                                <%                                      
-                                        rs.close();
-                                        set.close();
-                                    } catch (Exception ex) {
-                                        System.out.println("Error en acceso a BD Jugadores" + ex);
-                                    }
-                                %>
+                        try {
+                            String foto = null;
+                            String select = "SELECT foto FROM cliente where Email like " + session.getAttribute("nombre");
+                            set = con.createStatement();
+                            rs = set.executeQuery(select);
+                            rs.next();
+                            foto = rs.getString("foto");
+                    %>
+                    <h1><%=foto%></h1>
+                    <%
+                            rs.close();
+                            set.close();
+                        } catch (Exception ex) {
+                            System.out.println("Error en acceso a BD Jugadores" + ex);
+                        }
+                    %>
                     <a href="busquedacliente.html">Búsqueda</a>
                     <a href="logout.jsp">Logout</a>
                 </nav>
@@ -66,7 +64,19 @@
 
                     <div>
                         <span ></span>
-                        <form name="frmAlquiler" id="frmAlquiler" method="get" action="">
+                        <%
+                            try {
+                                String nombre = (String) session.getAttribute("nombre");                              
+                        %>
+                        <h1>Hola, <%=nombre%></h1>
+                        <%
+                                rs.close();
+                                set.close();
+                            } catch (Exception ex) {
+                                System.out.println("Error en acceso a BD Jugadores" + ex);
+                            }
+                        %>
+                        <form name="frmAlquiler" id="frmAlquiler" method="get" action="Reserva">
                             <p>Elige un coche </p>
                             <select name="lCoches" id="coches" size="6" required="">                               
                                 <%

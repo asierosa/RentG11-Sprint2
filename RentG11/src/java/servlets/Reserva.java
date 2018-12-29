@@ -6,13 +6,10 @@
 package servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.servlet.ServletConfig;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -22,11 +19,10 @@ import utils.BD;
 
 /**
  *
- * @author CASA
+ * @author USUARIO
  */
-public class Registro extends HttpServlet {
-
-    private Connection con;
+public class Reserva extends HttpServlet{
+  private Connection con;
     private Statement set;
     String cad;
 
@@ -41,28 +37,21 @@ public class Registro extends HttpServlet {
         // Obtener la sesión
         HttpSession s = req.getSession(true);
 
-        String email = (String) req.getParameter("email");
-        String nombre = (String) req.getParameter("name");
-        String DNI = (String) req.getParameter("DNI");
-        String telefono = (String) req.getParameter("tfn");
-        String contrasena = (String) req.getParameter("txtPassword");
-        String foto = (String) req.getParameter("archivos");
-        s.setAttribute("nombre", nombre);
-        s.setAttribute("fotoCliente", foto);
-
+        String coche = (String) req.getParameter("lCoches");
+        String fechaI = (String) req.getParameter("fechaI");
+        String horaI = (String) req.getParameter("horaI");
+        String fechaF = (String) req.getParameter("fechaF");
+        String horaF = (String) req.getParameter("horaF");
+        String nombre= (String) s.getAttribute("nombre"); 
+        String recogida = fechaI+" "+horaI;
+        String entrega = fechaF+" "+horaF;
         try {
             set = con.createStatement();
-            set.executeUpdate("INSERT INTO cliente VALUES ('" + email + "','" + nombre + "','" + DNI + "','" + telefono + "','" + contrasena + "','" + foto + "')");
+            set.executeUpdate("INSERT INTO reserva(CocheMatricula,ClienteEmail,RecogidaTeorica,EntregaTeorica) VALUES ('" + coche + "','" + nombre + "','" + recogida + "','" + entrega + "')");
 
             set.close();
         } catch (SQLException ex2) {
             System.out.println("No inserta el usuario en Cliente." + ex2);
-        }
-        if (!"RS1@rentG.com".equals(email) || !"RS2@rentG.com".equals(email) || !"RS3@rentG.com".equals(email)) {
-            req.getRequestDispatcher("indexCliente.jsp").forward(req, res);
-        }
-        else{
-            req.getRequestDispatcher("indexRS.jsp").forward(req, res);
         }
     }
 

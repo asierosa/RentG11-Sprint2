@@ -17,7 +17,6 @@ function iniciar() {
     formulario = document.querySelector("form[name='frmRegistro']");
     formulario.addEventListener("input", comprobar);
     boton.addEventListener("click", enviarformulario);
-    localStorage.setItem('Correo','email');
     
 }
 
