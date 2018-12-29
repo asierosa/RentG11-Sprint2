@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>LOGIN</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/estilo.css">
+        <script src="js/login.js" type="text/javascript"></script>
+        <script src="js/login.js" type="text/javascript"></script>
+    </head>
+    <body>
+        <div>
+            <nav id = "nav">
+             <a href="index.html">Inicio</a>
+            </nav>
+        </div>
+        <section id="three" class="wrapper align-center">
+            <div class="inner">
+                <div class="flex flex-2">
+                    <article>
+                        <header>
+                            <h3>Login</h3>
+                        </header>
+                        <form name="frmLogin" id="frmLogin" method="post" action="Login">
+                            <p>Email:<input type="email" name="emailLogin" id="correoLogin" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required="" />
+                            <p>Contraseña:<input type="password" name="txtPassLogin" id="passLogin" value="" required="" size="15" />   
+                            <p><button type="submit" class="button" id="login">Login</button></p>
+                        </form>
+                    </article>
+                </div>
+            </div>
+            <div>
+            <nav id = "nav">
+                <a href="registro.html">No tengo usuario creado</a>
+            </nav>
+        </div>
+        </section>
+    </body>
+</html>
